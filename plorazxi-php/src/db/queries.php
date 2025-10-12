@@ -1,6 +1,6 @@
 <?php
-    class querys {
-        public string create = "
+    class queries {
+        public string $create = "
         CREATE TABLE IF NOT EXISTS tarefas (
             id BIGINT NOT NULL AUTO_INCREMENT,
             nome VARCHAR(50),

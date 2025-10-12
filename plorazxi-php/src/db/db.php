@@ -1,6 +1,6 @@
 <?php
     require_once "vendor/autoload.php";
-    require_once "querys.php";
+    require_once "queries.php";
 
     class DataBase {
         private string $host;
@@ -31,8 +31,14 @@
         }
 
         private function create() {
-            $this->conn->prepare(new query->create);
-            echo "funcionou";
+            try {
+                $query = new queries();
+                $stmt = $this->conn->prepare($query->create);
+                $stmt->execute();
+                echo "criou";
+            } catch (PDOException $e) {
+                echo "Falha na criação da tabela: " . $e->getMessage();
+            }
         }
     }
 ?>
