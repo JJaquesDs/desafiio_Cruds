@@ -11,13 +11,15 @@
         private string $username;
         private string $password;
 
-        public PDO $conn;
+        private PDO $conn;
+        private Queries $queries;
 
         public function __construct() {
             $this->host = getenv('HOST_DB');
             $this->dbname = getenv('NAME_DB');
             $this->username = getenv('USER_DB');
             $this->password = getenv('PASSWORD_DB');
+            $this->queries = new Queries();
 
             $this->connect();
             $this->create();
@@ -35,8 +37,7 @@
 
         private function create() {
             try {
-                $query = new queries();
-                $stmt = $this->conn->prepare($query->create);
+                $stmt = $this->conn->prepare($this->queries->create);
                 $stmt->execute();
             } catch (PDOException $e) {
                 echo "Falha na criação da tabela: " . $e->getMessage();
