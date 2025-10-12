@@ -2,6 +2,9 @@
     require_once "vendor/autoload.php";
     require_once "queries.php";
 
+    $dotenv = Dotenv\Dotenv::createUnsafeImmutable(dirname(__DIR__, 2));
+    $dotenv->load();
+
     class DataBase {
         private string $host;
         private string $dbname;
@@ -22,7 +25,7 @@
 
         private function connect() {
             try{
-                $this->conn = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->username, $this->password);
+                $this->conn = new PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->username, $this->password);
                 $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (PDOException $e) {
                 echo "Erro de conexão: ".$e->getMessage();
@@ -35,7 +38,6 @@
                 $query = new queries();
                 $stmt = $this->conn->prepare($query->create);
                 $stmt->execute();
-                echo "criou";
             } catch (PDOException $e) {
                 echo "Falha na criação da tabela: " . $e->getMessage();
             }
