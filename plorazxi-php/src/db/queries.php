@@ -10,8 +10,13 @@
                 PRIMARY KEY (id)
             ); 
         ";
+
         public string $getAllTasks = "
             SELECT * FROM tarefas;
+        ";
+
+        public string $insertTask = "
+            INSERT tarefas(nome, descricao) VALUES (?, ?);
         ";
     }
 ?>

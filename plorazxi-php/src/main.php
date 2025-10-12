@@ -25,5 +25,7 @@ $app->get('/', function (Request $request, Response $response, $args) {
 
 $app->get('/tarefas', [$routerTarefas, 'get']);
 
+$app->post('/tarefas', [$routerTarefas, 'post']);
+
 // Executa o Slim
 $app->run();

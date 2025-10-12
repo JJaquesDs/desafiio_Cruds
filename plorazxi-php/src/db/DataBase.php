@@ -49,5 +49,18 @@
             $data = $stmt->fetchAll();
             return $data;
         }
+
+        public function insertTask(string $nome, string $descricao) {
+            try {
+                $stmt = $this->conn->prepare($this->queries->insertTask);
+                $stmt->execute([$nome, $descricao]);
+                return json_encode(['msg' => 'Tarefa adicionada com sucesso']);
+            } catch (PDOException $e) {
+                return json_encode([
+                    'msg' => 'Erro ao adicionar tarefa',
+                    'error' => $e
+                ]);
+            }
+        }
     }
 ?>

@@ -18,7 +18,10 @@
         }
 
         public function post(Request $request, Response $response, array $args) {
-
+            $parametros = (array) $request->getParsedBody();
+            $data = $this->db->insertTask($parametros['nome'], $parametros['descricao']);
+            $response->getBody()->write($data);
+            return $response->withHeader('Content-Type', 'application/json');
         }
     }
 ?>
