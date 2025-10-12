@@ -43,5 +43,11 @@
                 echo "Falha na criação da tabela: " . $e->getMessage();
             }
         }
+
+        public function getAllTasks() {
+            $stmt = $this->conn->query($this->queries->getAllTasks);
+            $data = $stmt->fetchAll();
+            return $data;
+        }
     }
 ?>

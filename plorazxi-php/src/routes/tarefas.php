@@ -10,5 +10,11 @@
         {
             $this->db = $db;
         }
+
+        public function get(Request $request, Response $response, array $args) {
+            $data = $this->db->getAllTasks();
+            $response->getBody()->write(json_encode($data));
+            return $response->withHeader('Content-Type', 'application/json');
+        }
     }
 ?>

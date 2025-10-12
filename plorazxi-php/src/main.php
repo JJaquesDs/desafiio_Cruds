@@ -23,5 +23,7 @@ $app->get('/', function (Request $request, Response $response, $args) {
     return $response->withHeader('Content-Type', 'application/json');
 });
 
+$app->get('/tarefas', [$routerTarefas, 'get']);
+
 // Executa o Slim
 $app->run();

@@ -10,5 +10,8 @@
                 PRIMARY KEY (id)
             ); 
         ";
+        public string $getAllTasks = "
+            SELECT * FROM tarefas;
+        ";
     }
 ?>
