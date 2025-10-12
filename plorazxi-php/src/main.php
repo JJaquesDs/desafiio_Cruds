@@ -5,8 +5,8 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 
 require_once 'vendor/autoload.php';
-require_once 'db/db.php';
-require_once 'routes/tarefas.php';
+require_once 'db/DataBase.php';
+require_once 'routes/Tarefas.php';
 
 $db = new DataBase();
 $routerTarefas = new Tarefas($db);

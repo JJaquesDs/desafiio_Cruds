@@ -1,6 +1,6 @@
 <?php
     require_once "vendor/autoload.php";
-    require_once "queries.php";
+    require_once "Queries.php";
 
     $dotenv = Dotenv\Dotenv::createUnsafeImmutable(dirname(__DIR__, 2));
     $dotenv->load();
