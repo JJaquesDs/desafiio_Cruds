@@ -19,7 +19,9 @@
 
         public function post(Request $request, Response $response, array $args) {
             $parametros = (array) $request->getParsedBody();
-            $data = $this->db->insertTask($parametros['nome'], $parametros['descricao']);
+            $nome = (string) $parametros['nome'];
+            $descricao = (string) $parametros['descricao'];
+            $data = $this->db->insertTask($nome, $descricao);
             $response->getBody()->write($data);
             return $response->withHeader('Content-Type', 'application/json');
         }

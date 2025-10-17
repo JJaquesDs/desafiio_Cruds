@@ -58,7 +58,7 @@
             } catch (PDOException $e) {
                 return json_encode([
                     'msg' => 'Erro ao adicionar tarefa',
-                    'error' => $e
+                    'error' => $e->getMessage()
                 ]);
             }
         }

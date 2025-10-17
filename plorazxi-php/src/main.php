@@ -14,8 +14,8 @@ $routerTarefas = new Tarefas($db);
 // Cria o aplicativo Slim
 $app = AppFactory::create();
 
-// Adiciona um Middleware de Roteamento.
 $app->addRoutingMiddleware();
+$app->addBodyParsingMiddleware();
 
 $app->get('/', function (Request $request, Response $response, $args) {
     $payload = json_encode(['message' => 'API online']);
