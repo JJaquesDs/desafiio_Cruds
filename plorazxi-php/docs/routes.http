@@ -1,0 +1,11 @@
+### Requisição para pegar todas as Tasks
+GET http://localhost:8080/tarefas
+
+### Requisição para inserir Tasks
+POST http://localhost:8080/tarefas
+Content-Type: "application/json"
+
+{
+    "nome": "Paulin Bacana",
+    "descricao": "Paulin Bacana"
+}
