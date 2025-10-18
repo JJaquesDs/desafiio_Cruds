@@ -9,3 +9,38 @@ Content-Type: application/json
     "nome": "Paulin Bacana",
     "descricao": "Paulin Bacana"
 }
+
+##### Testes da rota PUT /tarefas/{id}
+### Requisição para testar o PUT da rota /tarefas/{id} - com todos os parametros
+PUT http://localhost:8080/tarefas/1
+Content-Type: application/json
+
+{
+    "nome": "Joao Vitor",
+    "descricao": "Joao Vitor",
+    "concluida": 1
+}
+
+### Requisição para testar o PUT da rota /tarefas/{id} - apenas com o nome
+PUT http://localhost:8080/tarefas/2
+Content-Type: application/json
+
+{
+    "nome": "Yuri Matsuzaki"
+}
+
+### Requisição para testar o PUT da rota /tarefas/{id} - apenas com a descrição
+PUT http://localhost:8080/tarefas/3
+Content-Type: application/json
+
+{
+    "descricao": "Neander David"
+}
+
+### Requisição para testar o PUT da rota /tarefas/{id} - apenas com concluida
+PUT http://localhost:8080/tarefas/4
+Content-Type: application/json
+
+{
+    "concluida": 1
+}
