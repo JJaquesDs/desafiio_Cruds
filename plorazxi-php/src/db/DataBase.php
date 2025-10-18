@@ -85,8 +85,6 @@
                 ]);
             $condicao = ' WHERE id = ?;';
             $values[] = $id;
-            // if (count($toUpdate) == 1) $sql = $this->queries->updateTask . $toUpdate . $condicao; 
-            // else 
             $sql = $this->queries->updateTask . implode(', ', $toUpdate) . $condicao;
             try {
                 $stmt = $this->conn->prepare($sql);
