@@ -29,5 +29,7 @@ $app->post('/tarefas', [$routerTarefas, 'post']);
 
 $app->put('/tarefas/{id}', [$routerTarefas, 'put']);
 
+$app->delete('/tarefas/{id}', [$routerTarefas, 'delete']);
+
 // Executa o Slim
 $app->run();

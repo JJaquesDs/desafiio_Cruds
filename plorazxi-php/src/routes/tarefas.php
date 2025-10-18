@@ -36,5 +36,12 @@
             $response->getBody()->write($data);
             return $response->withHeader('Content-Type', 'application/json');
         }
+
+        public function delete(Request $request, Response $response, array $args) {
+            $idTask = (int) $args['id'];
+            $data = $this->db->deleteTask($idTask);
+            $response->getBody()->write($data);
+            return $response->withHeader('Content-Type', 'application/json');
+        }
     }
 ?>

@@ -96,5 +96,20 @@
                 ]);
             }
         }
+
+        public function deleteTask(int $id) {
+            try {
+                $stmt = $this->conn->prepare($this->queries->deleteTask);
+                $stmt->execute([$id]);
+                return json_encode([
+                    'msg' => 'Tarefa excluida com sucesso'
+                ]);
+            } catch (PDOException $e) {
+                return json_encode([
+                    'msg' => 'Falha ao deletar tarefa',
+                    'error' => $e
+                ]);
+            }
+        }
     }
 ?>

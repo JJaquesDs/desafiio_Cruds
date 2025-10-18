@@ -23,5 +23,10 @@
             UPDATE tarefas
             SET 
         ";
+
+        public string $deleteTask = "
+            DELETE FROM tarefas
+            WHERE id = ?;
+        ";
     }
 ?>
