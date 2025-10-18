@@ -44,3 +44,6 @@ Content-Type: application/json
 {
     "concluida": 1
 }
+
+### Requisição para deletar Tasks
+DELETE http://localhost:8080/tarefas/1
