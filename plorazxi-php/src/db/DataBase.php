@@ -80,8 +80,7 @@
             }
             if(empty($toUpdate)) 
                 return json_encode([
-                    'msg' => 'Nenhum dado para alterar',
-                    'array' => $toUpdate
+                    'msg' => 'Nenhum dado para alterar'
                 ]);
             $condicao = ' WHERE id = ?;';
             $values[] = $id;
