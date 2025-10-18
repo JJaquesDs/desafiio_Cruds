@@ -18,5 +18,10 @@
         public string $insertTask = "
             INSERT tarefas(nome, descricao) VALUES (?, ?);
         ";
+
+        public string $updateTask = "
+            UPDATE tarefas
+            SET 
+        ";
     }
 ?>

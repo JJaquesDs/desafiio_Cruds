@@ -25,5 +25,16 @@
             $response->getBody()->write($data);
             return $response->withHeader('Content-Type', 'application/json');
         }
+
+        public function put(Request $request, Response $response, array $args) {
+            $parametros = (array) $request->getParsedBody();
+            $idTask = $args['id'];
+            $nome = (string) $parametros['nome'];
+            $descricao = (string) $parametros['descricao'];
+            $concluida = (bool) $parametros['concluida'];
+            $data = $this->db->updateTask($idTask, $nome, $descricao, $concluida);
+            $response->getBody()->write($data);
+            return $response->withHeader('Content-Type', 'application/json');
+        }
     }
 ?>

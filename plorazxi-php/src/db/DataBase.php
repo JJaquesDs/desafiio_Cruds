@@ -62,5 +62,42 @@
                 ]);
             }
         }
+
+        public function updateTask(int $id, ?string $nome, ?string $descricao, ?bool $concluida) {
+            $toUpdate = [];
+            $values = [];
+            if(!is_null($nome)) {
+                $toUpdate[] = 'nome = ?';
+                $values[] = $nome;
+            }
+            if(!is_null($descricao)) {
+                $toUpdate[] = 'descricao = ?';
+                $values[] = $descricao;
+            }
+            if(!is_null($concluida)) {
+                $toUpdate[] = 'concluida = ?';
+                $values[] = (int) $concluida;
+            }
+            if(empty($toUpdate)) 
+                return json_encode([
+                    'msg' => 'Nenhum dado para alterar',
+                    'array' => $toUpdate
+                ]);
+            $condicao = ' WHERE id = ?;';
+            $values[] = $id;
+            // if (count($toUpdate) == 1) $sql = $this->queries->updateTask . $toUpdate . $condicao; 
+            // else 
+            $sql = $this->queries->updateTask . implode(', ', $toUpdate) . $condicao;
+            try {
+                $stmt = $this->conn->prepare($sql);
+                $stmt->execute($values);
+                return json_encode(['msg' => 'Tarefa alterada com sucesso']);
+            } catch (PDOException $e) {
+                return json_encode([
+                    'msg' => 'Falha ao fazer o update',
+                    'error' => $e->getMessage()
+                ]);
+            }
+        }
     }
 ?>
