@@ -1,4 +1,5 @@
 <?php
+    // Classe para guardar todas as queries que serão utilizadas
     class Queries {
         public string $create = "
             CREATE TABLE IF NOT EXISTS tarefas (

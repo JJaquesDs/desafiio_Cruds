@@ -2,9 +2,11 @@
     require_once "vendor/autoload.php";
     require_once "Queries.php";
 
+    // Comandos para importar a lib para importar as variaveis de ambiente
     $dotenv = Dotenv\Dotenv::createUnsafeImmutable(dirname(__DIR__, 2));
     $dotenv->load();
 
+    // Classe que se relaciona com o Banco de Dados
     class DataBase {
         private string $host;
         private string $dbname;
@@ -15,6 +17,7 @@
         private Queries $queries;
 
         public function __construct() {
+            // Carrega as variaveis de ambiente para a conexão com o DB
             $this->host = getenv('HOST_DB');
             $this->dbname = getenv('NAME_DB');
             $this->username = getenv('USER_DB');
@@ -25,6 +28,7 @@
             $this->create();
         }
 
+        // Função para a conexão com o Banco
         private function connect() {
             try{
                 $this->conn = new PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->username, $this->password);
@@ -35,6 +39,7 @@
             }
         }
 
+        // Função para a criação das tabelas que serão utilizadas no DB
         private function create() {
             try {
                 $stmt = $this->conn->prepare($this->queries->create);
@@ -44,6 +49,7 @@
             }
         }
 
+        // Funções diretamente ligadas a API
         public function getAllTasks() {
             $stmt = $this->conn->query($this->queries->getAllTasks);
             $data = $stmt->fetchAll();
@@ -64,6 +70,7 @@
         }
 
         public function updateTask(int $id, ?string $nome, ?string $descricao, ?bool $concluida) {
+            // varificação do que há para atualizar na task
             $toUpdate = [];
             $values = [];
             if(!is_null($nome)) {
@@ -78,12 +85,14 @@
                 $toUpdate[] = 'concluida = ?';
                 $values[] = (int) $concluida;
             }
+            // Se não encontrar nada para alterar responder a requisição com um erro
             if(empty($toUpdate)) 
                 return json_encode([
                     'msg' => 'Nenhum dado para alterar'
                 ]);
             $condicao = ' WHERE id = ?;';
             $values[] = $id;
+            // Criação do SQL
             $sql = $this->queries->updateTask . implode(', ', $toUpdate) . $condicao;
             try {
                 $stmt = $this->conn->prepare($sql);
