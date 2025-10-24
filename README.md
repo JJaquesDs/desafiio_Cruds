@@ -29,4 +29,4 @@ As entidades devem seguir esse padrão
 | Loraschi | N si lembro |
 | Opaulin | N si lembro |
 | João | JavaSript |
-| Yuri | Java |
+| Yuri | Golang |
